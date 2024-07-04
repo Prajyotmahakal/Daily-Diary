@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Diary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bimg">
+
+        <div id="q_background">
+            <P id="quotes">You deserve to be treated with love and respect. Never settle for less.</P>
+        </div>
+
+        <form class="center" style="margin: 30%; opacity: 0.8;">
+           
+            <button id="write" style="margin-top: 10px;" onclick="openWrite()">Write Diary</button>
+            <button id="read" style="margin-top: 10px;" onclick="openReadEntries()">Read Diary</button>
+        </form>
+    </div>
+
+    <script>
+        function openWrite() {
+           
+            window.open('review.html');
+        }
+
+        function openReadEntries() {
+            window.open('readentries.html');
+        }
+
+        var quotes = [
+            "Give first priority to yourself.",
+            "Don't entertain any useless fellows.",
+            "Do any mistake and you will always be forgiven in my court.",
+            "Do anything in your life, just don't regret.",
+            "You have always given 100%."
+        ];
+
+        function getRandomQuote() {
+            var index = Math.floor(Math.random() * quotes.length);
+            return quotes[index];
+        }
+
+        function updateQuote() {
+            const quotePara = document.getElementById("quotes");
+            quotePara.innerHTML = getRandomQuote();
+        }
+
+        setInterval(updateQuote, 4000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Diary</title>
+    <!-- Firebase SDK (version 9 modular) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script type="module">
+
+document.addEventListener('DOMContentLoaded', (event) => {
+            const dateInput = document.getElementById('date');
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            dateInput.value = `${year}-${month}-${day}`;
+        });
+        // Import the functions from the Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCaV0lP-a0z_hQ9nGrYUFEL3VXd_-Ix78A",
+            authDomain: "daily-dairy-e96e0.firebaseapp.com",
+            projectId: "daily-dairy-e96e0",
+            storageBucket: "daily-dairy-e96e0.appspot.com",
+            messagingSenderId: "112927618982",
+            appId: "1:112927618982:web:78c4911bd9b4b72d620167",
+            measurementId: "G-PLD0LYKZ77"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Authentication state observer
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "index.html";
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('entryForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const content = document.getElementById('content').value;
+
+            try {
+                await addDoc(collection(db, "entries"), {
+                    date: date,
+                    content: content
+                });
+                alert('Entry saved successfully!');
+                document.getElementById('date').value = '';
+                document.getElementById('content').value = '';
+                window.open('diary.html');
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert('Failed to save entry. Please try again later.');
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Write Your Entry</h2>
+        <form id="entryForm">
+            <input type="date" id="date" required>
+            <textarea id="content" rows="10" required></textarea>
+            <button type="submit">Save Entry</button>
+        </form>
+    </div>
+</body>
+</html>

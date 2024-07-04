@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+   
+}
+
+#q_background {
+    background-color: rgba(255, 255, 255, 0.4); 
+    
+    border: 2px solid rgb(27, 6, 95);
+    border-radius: 10px;
+    display: inline;
+  }
+  
+  #quotes {
+    font-size: 1.5em;
+    color: #04406d; 
+    text-align: center;
+    text-wrap:wrap;
+    margin: 3px;
+    animation: fadeInOut 8s infinite;
+      
+  }
+
+  form{
+    border: 1px solid white;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(123, 170, 220, 0.5);
+  }
+
+.bimg{
+
+    height: 100vh;
+    width: 100vw;
+    background-image: url('backimg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 39%;
+    height: 13%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+textarea:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+#review:hover {
+    background-color: #0056b3;
+}
+
+#review{
+
+    color: rgb(237, 234, 234);
+    background-color: #041215;
+
+
+    padding: 5px 10px;
+    font-size: 11px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
